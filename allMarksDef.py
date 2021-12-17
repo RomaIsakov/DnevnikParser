@@ -24,49 +24,49 @@ def allMarksDef(dict):
 
     for i in range(len(dict["data"]["items"])):
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 society.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 PE.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Технология":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 technology.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Основы безопасной жизнедеятельности":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 OBJ.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Химия":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 chemistry.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Иностранный язык ":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 eng.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "География":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 geography.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Биология":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 biology.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Русский язык":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 rus.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Алгебра":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 algebra.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Геометрия":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 geometry.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Информатика":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 IT.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Литература":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 literature.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_value_name"].isdigit():
+            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
 
         mathDict={
