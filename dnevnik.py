@@ -1,18 +1,28 @@
-#!/usr/bin/env python3
 from collections import defaultdict
 import datetime as dt
 import json
 from pathlib import Path
 import pickle
-import pip._vendor.requests as requests
-import pip._vendor.tomli as toml
+import requests as requests
+import toml
 import sys
 
 
 SUBJECTS = {
-    113703: "Английский язык",
-    113704: "Немецкий язык",
-}
+    73090:"Информатика",
+    73053:"Химия",
+    73041:"Русский язык",
+    73033:"Алгебра",
+    73052:"Физика",
+    73034:"Геометрия",
+    73051:"Биология",
+    73073:"География",
+    73167:"Иностранный язык",
+    73048:"Обществознание",
+    73060:"Основы безопасности жизнедеятельности",
+    73054:"Технология",
+    73059:"Физическая культура"}
+
 
 
 def get_subject(item):
@@ -23,7 +33,7 @@ def to_date(text):
     return dt.datetime.strptime(text, '%d.%m.%Y').date()
 
 
-def main():
+def marksParser():
     config_path = 'app_config.toml'
     session_path = 'dnevnik.session.pkl'
     base_dir = Path(sys.argv[0]).parent.absolute()
@@ -42,7 +52,7 @@ def main():
         text = res.text
         data = res.json()
 
-    with (base_dir / 'last_res.txt').open('w', encoding='utf-8') as f1:
+    with (base_dir / 'last_res.json').open('w', encoding='utf-8') as f1:
         print(json.dumps(data, ensure_ascii=False, indent=2), file=f1)
 
     out_lines = []
@@ -74,7 +84,5 @@ def main():
 
     with (base_dir / session_path).open('wb') as f1:
         pickle.dump(session, f1)
-
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    marksParser()

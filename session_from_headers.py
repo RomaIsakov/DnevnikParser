@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import json
 import pickle
 
@@ -8,7 +7,7 @@ SESSION_PATH = 'dnevnik.session.pkl'
 HEADERS_PATH = 'headers.json'
 
 
-def main():
+def headersMiner():
     with open(HEADERS_PATH) as f1:
         headers = json.load(f1)
 
@@ -18,6 +17,5 @@ def main():
 
     with open(SESSION_PATH, 'wb') as f1:
         pickle.dump(session, f1)
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    headersMiner()
