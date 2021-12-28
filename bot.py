@@ -28,7 +28,7 @@ async def allMarks(message:types.message):
     await message.answer(result)
 #фильтровать по estimate type code 1058
     #BETA. while True - плохо. Выводит 35 оценок из списка
-    '''while True:
+    while True:
         if dict["data"]["items"][count]['estimate_type_code'] == '1058':
            await message.answer(dict["data"]["items"][count]['subject_name'] + ' : ' + dict["data"]["items"][count]['estimate_value_name'])
            count += 1
@@ -40,7 +40,7 @@ async def allMarks(message:types.message):
                     break
 
         if message_count == 35:
-            break'''
+            break
 
 @dp.message_handler(Text(equals="Новые оценки"))
 async def regress(message: types.message):

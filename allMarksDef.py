@@ -23,7 +23,6 @@ def allMarksDef(dict):
     b=0
 
     for i in range(len(dict["data"]["items"])):
-        print("!!!!")
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
             print("222")
             if dict["data"]["items"][i]["estimate_type_code"]=="1058":
@@ -123,3 +122,6 @@ def getNewMarks():
 
 def markParser():
     pass
+#Средний бал по всем предметам
+def allAvg():
+
