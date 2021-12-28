@@ -7,7 +7,7 @@ bot=Bot(token)
 dp=Dispatcher(bot)
 with open("last_res.json", "r", encoding="utf-8") as file:
     dict=json.load(file)
-
+count = 0
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
@@ -21,13 +21,27 @@ async def start(message:types.message):
     await message.answer("Нет места деградации")"""
 @dp.message_handler(Text(equals="Все оценки"))
 async def allMarks(message:types.message):
-    count = 0
+    #global count
+    message_count = 0
+    print(dict)
+    result = allMarksDef(dict)
+    await message.answer(result)
 #фильтровать по estimate type code 1058
-    for i in dict:
-        count+=1
-        await message.answer(dict["data"]["items"]["subject_name"]+dict["data"]["items"]["estimate_value_name"])
-        if count==10:
-            break
+    #BETA. while True - плохо. Выводит 35 оценок из списка
+    '''while True:
+        if dict["data"]["items"][count]['estimate_type_code'] == '1058':
+           await message.answer(dict["data"]["items"][count]['subject_name'] + ' : ' + dict["data"]["items"][count]['estimate_value_name'])
+           count += 1
+           message_count += 1
+        else:
+            while True:
+                count += 1
+                if dict["data"]["items"][count]['estimate_type_code'] == '1058':
+                    break
+
+        if message_count == 35:
+            break'''
+
 @dp.message_handler(Text(equals="Новые оценки"))
 async def regress(message: types.message):
     result=getNewMarks()
@@ -43,4 +57,3 @@ async def regress(message: types.message):
 
 if __name__ == "__main__":
     executor.start_polling(dp)
-

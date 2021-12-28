@@ -23,11 +23,15 @@ def allMarksDef(dict):
     b=0
 
     for i in range(len(dict["data"]["items"])):
+        print("!!!!")
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
+            print("222")
             if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 society.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
+            print("222")
             if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+                print("№333")
                 PE.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Технология":
             if dict["data"]["items"][i]["estimate_type_code"]=="1058":
@@ -69,21 +73,30 @@ def allMarksDef(dict):
             if dict["data"]["items"][i]["estimate_type_code"]=="1058":
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
 
-        mathDict={
-            "Русский язык":rus,
+    mathDict={
+            "Рус. Яз":rus,
             "Алгебра":algebra,
             "Химия":chemistry,
             "Геометрия":geometry,
             "Биология":biology,
             "География":geography,
-            "Иностранный язык":eng,
-            "Обществознание":society,
-            "Основы безопасной жизнедеятельности":OBJ,
+            "Англ. Яз":eng,
+            "Общество":society,
+            "ОБЖ":OBJ,
             "Технология":technology,
-            "Физическая культура":PE,
+            "Физра":PE,
             "Физика":physics
         }
-        return(mathDict)
+    res_text=""
+    for key in mathDict:
+        res_text+=key
+        res_text+=": "
+        for i in range(len(mathDict[key])):
+            res_text+=str(mathDict[key][i])
+            res_text+=", "
+        res_text+="\n"
+
+    return(res_text)
 def jsonDumper(dict, fileName):
     with open(fileName+".json","r", encoding="utf-8")as file:
         json.dump(dict, file)
