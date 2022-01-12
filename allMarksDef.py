@@ -1,10 +1,11 @@
 import json
+from statistics import mean
 from session_from_headers import headersMiner
 from dnevnik import *
 def parsing():
     headersMiner()
     marksParser()
-def allMarksDef(dict):
+def allMarksDef(dict, key):
     parsing()
     chemistry=[]
     rus=[]
@@ -21,55 +22,52 @@ def allMarksDef(dict):
     technology=[]
     PE=[]
     b=0
-
+    codeList=["1084", "1058", "1077", "1063", "1086", "11204", "1065", "1087", "1089", "11080", "1088", "1083", "1092"]
     for i in range(len(dict["data"]["items"])):
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
-            print("222")
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 society.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
-            print("222")
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
-                print("№333")
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 PE.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Технология":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 technology.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Основы безопасной жизнедеятельности":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+        if dict["data"]["items"][i]["subject_name"] == "Основы безопасности жизнедеятельности":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 OBJ.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Химия":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 chemistry.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Иностранный язык ":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+        if dict["data"]["items"][i]["subject_name"] == "Иностранный язык (английский)":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 eng.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "География":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 geography.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Биология":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 biology.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Русский язык":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 rus.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Алгебра":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 algebra.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Геометрия":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 geometry.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Информатика":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 IT.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Литература":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 literature.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_type_code"]=="1058":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
 
     mathDict={
@@ -86,16 +84,18 @@ def allMarksDef(dict):
             "Физра":PE,
             "Физика":physics
         }
-    res_text=""
-    for key in mathDict:
-        res_text+=key
-        res_text+=": "
-        for i in range(len(mathDict[key])):
-            res_text+=str(mathDict[key][i])
-            res_text+=", "
-        res_text+="\n"
-
-    return(res_text)
+    if key==1:
+        return(mathDict)
+    elif key==0:
+        res_text=""
+        for key in mathDict:
+            res_text+=key
+            res_text+=": "
+            for i in range(len(mathDict[key])):
+                res_text+=str(mathDict[key][i])
+                res_text+=", "
+            res_text+="\n"
+        return(res_text)
 def jsonDumper(dict, fileName):
     with open(fileName+".json","r", encoding="utf-8")as file:
         json.dump(dict, file)
@@ -124,4 +124,23 @@ def markParser():
     pass
 #Средний бал по всем предметам
 def allAvg():
+    avgDict={}
+    with open("last_res.json", "r", encoding="utf-8") as file:
+        dict = json.load(file)
+    allMarks=allMarksDef(dict, 1)#Получаем словарь со всеми предметами
+    mathDictClear=[]
+    for i in allMarks:#Убирает замечания
+        for j in range(len(allMarks[i])):
+            if allMarks[i][j]!="Замечание":
+                mathDictClear.append(int(allMarks[i][j]))
+        allMarks[i]=mathDictClear
+        mathDictClear=[]
+    for i in allMarks:
+        if len(allMarks[i])!=0:
+            allMarks[i]=round(mean(allMarks[i]), 2)
+        else:allMarks[i]="Оценок пока нет"
 
+    return allMarks
+
+if __name__ == "__main__":
+    allAvg()

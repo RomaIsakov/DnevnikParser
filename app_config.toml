@@ -5,7 +5,7 @@
 
     [urls.marks_for_period.params]
     'p_educations[]' = 204383
-    p_date_from = "02.09.2021"
-    p_date_to = "8.12.2021"
+    p_date_from = "01.01.2022"
+    p_date_to = "30.12.2022"
     p_limit = 200
     p_page = 1
