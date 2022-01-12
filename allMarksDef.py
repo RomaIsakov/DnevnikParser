@@ -21,12 +21,21 @@ def allMarksDef(dict, key):
     OBJ=[]
     technology=[]
     PE=[]
+    history=[]
     b=0
     codeList=["1084", "1058", "1077", "1063", "1086", "11204", "1065", "1087", "1089", "11080", "1088", "1083", "1092"]
     for i in range(len(dict["data"]["items"])):
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 society.append(dict["data"]["items"][i]["estimate_value_name"])
+        for i in range(len(dict["data"]["items"])):
+            if dict["data"]["items"][i]["subject_name"] == "История России. Всеобщая история":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    history.append(dict["data"]["items"][i]["estimate_value_name"])
+        for i in range(len(dict["data"]["items"])):
+            if dict["data"]["items"][i]["subject_name"] == "Информатика":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    IT.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 PE.append(dict["data"]["items"][i]["estimate_value_name"])
@@ -60,9 +69,6 @@ def allMarksDef(dict, key):
         if dict["data"]["items"][i]["subject_name"] == "Физика":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 physics.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Информатика":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                IT.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Литература":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 literature.append(dict["data"]["items"][i]["estimate_value_name"])
@@ -82,7 +88,10 @@ def allMarksDef(dict, key):
             "ОБЖ":OBJ,
             "Технология":technology,
             "Физра":PE,
-            "Физика":physics
+            "Физика":physics,
+            "История":history,
+            "Информатика":IT,
+            "Литра":literature
         }
     if key==1:
         return(mathDict)
@@ -139,8 +148,15 @@ def allAvg():
         if len(allMarks[i])!=0:
             allMarks[i]=round(mean(allMarks[i]), 2)
         else:allMarks[i]="Оценок пока нет"
-
-    return allMarks
+    res_text=""
+    for key in allMarks:
+        res_text+=key
+        res_text+=": "
+        for i in range(len(allMarks[key])):
+            res_text+=str(allMarks[key][i])
+            res_text+=", "
+        res_text+="\n"
+    return res_text
 
 if __name__ == "__main__":
     allAvg()

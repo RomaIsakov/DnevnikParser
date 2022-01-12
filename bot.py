@@ -26,20 +26,6 @@ async def allMarks(message:types.message):
     print(dict)
     result = allMarksDef(dict, 0)
     await message.answer(result)
-#фильтровать по estimate type code 1058
-    #BETA. while True - плохо. Выводит 35 оценок из списка
-    while True:
-        if dict["data"]["items"][message_count]['estimate_type_code'] == '1058':
-           await message.answer(dict["data"]["items"][message_count]['subject_name'] + ' : ' + dict["data"]["items"][message_count]['estimate_value_name'])
-           message_count += 1
-        else:
-            while True:
-                message_count += 1
-                if dict["data"]["items"][message_count]['estimate_type_code'] == '1058':
-                    break
-
-        if message_count == 35:
-            break
 
 @dp.message_handler(Text(equals="Новые оценки"))
 async def regress(message: types.message):
@@ -58,9 +44,7 @@ async def regress(message: types.message):
 @dp.message_handler(Text(equals="Средний балл"))
 async def avg(message: types.message):
     all=allAvg()
-    for i in all:
-        a=all[i]
-        await message.answer(i+": "+str(a))
+    await message.answer(all)
 
 if __name__ == "__main__":
     executor.start_polling(dp)
