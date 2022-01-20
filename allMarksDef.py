@@ -20,6 +20,7 @@ def allMarksDef(dict, key):
     eng=[]
     society=[]
     OBJ=[]
+#                                      ===[] - Hammer
     technology=[]
     PE=[]
     history=[]
@@ -65,9 +66,6 @@ def allMarksDef(dict, key):
         if dict["data"]["items"][i]["subject_name"] == "Геометрия":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 geometry.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                physics.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Литература":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 literature.append(dict["data"]["items"][i]["estimate_value_name"])
@@ -92,6 +90,10 @@ def allMarksDef(dict, key):
             "Информатика":IT,
             "Литра":literature
         }
+
+#key==1-возвращает словарь mathDict, словарь типа "предмет: оценка"
+#key==0-возращает красивую строку!
+
     if key==1:
         return(mathDict)
     elif key==0:
@@ -116,7 +118,6 @@ def getNewMarks():
         marks1=json.load(file)
     marksLen1=len(marks1)
     newMarks=marksLen1-marksLen
-    print(newMarks)
     count=0
     newMarksDict={}
     for i in marks1:
@@ -124,8 +125,7 @@ def getNewMarks():
         count+=1
         if count==newMarks:
             break
-    newMarksDict=allMarksDef(newMarksDict)
-    print(newMarks)
+    newMarksDict=allMarksDef(newMarksDict, 1)
     return newMarksDict
 
 def markParser():

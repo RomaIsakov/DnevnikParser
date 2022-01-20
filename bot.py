@@ -25,16 +25,16 @@ async def allMarks(message:types.message):
 
 @dp.message_handler(Text(equals="Новые оценки"))
 async def regress(message: types.message):
+    res=""
     result=getNewMarks()
-    for markNumber in result:
-        subjectName=markNumber
-        mark=list(map(int,result[markNumber]))
-        if len(mark)==0:
-            avg=0
-        else:
-            avg=round(sum(mark)/len(mark), 2)
-        res=f"{subjectName}:\nОценки: {mark}\nСредний балл: {avg}"
-        await message.answer(res)
+    for key in result:
+        res += key
+        res += ": "
+        for i in range(len(result[key])):
+            res += str(result[key][i])
+            res += ", "
+        res += "\n"
+    await message.answer(res)
 
 
 @dp.message_handler(Text(equals="Средний балл"))
