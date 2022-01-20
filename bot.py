@@ -9,16 +9,12 @@ with open("last_res.json", "r", encoding="utf-8") as file:
     dict=json.load(file)
 count = 0
 
-@dp.message_handler(commands=['start'])
-async def process_start_command(message: types.Message):
-    await message.reply("Привет!\nНапиши мне что-нибудь!")
-    """@dp.message_handler(commands="start")
+@dp.message_handler(commands="start")
 async def start(message:types.message):
     buttonsNames=["Все оценки", "Средний балл", "Новые оценки"]
     keyBoard=types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyBoard.add(*buttonsNames)
     await message.answer("Я бот, здравствуйте", reply_markup=keyBoard)
-    await message.answer("Нет места деградации")"""
 @dp.message_handler(Text(equals="Все оценки"))
 async def allMarks(message:types.message):
     #global count
@@ -43,8 +39,6 @@ async def regress(message: types.message):
 
 @dp.message_handler(Text(equals="Средний балл"))
 async def avg(message: types.message):
-    all=allAvg()
-    await message.answer(all)
-
+    await message.answer(allAvg())
 if __name__ == "__main__":
     executor.start_polling(dp)

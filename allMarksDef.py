@@ -1,4 +1,5 @@
 import json
+import requests
 from statistics import mean
 from session_from_headers import headersMiner
 from dnevnik import *
@@ -28,14 +29,12 @@ def allMarksDef(dict, key):
         if dict["data"]["items"][i]["subject_name"] == "Обществознание":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 society.append(dict["data"]["items"][i]["estimate_value_name"])
-        for i in range(len(dict["data"]["items"])):
-            if dict["data"]["items"][i]["subject_name"] == "История России. Всеобщая история":
-                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                    history.append(dict["data"]["items"][i]["estimate_value_name"])
-        for i in range(len(dict["data"]["items"])):
-            if dict["data"]["items"][i]["subject_name"] == "Информатика":
-                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                    IT.append(dict["data"]["items"][i]["estimate_value_name"])
+        if dict["data"]["items"][i]["subject_name"] == "История России. Всеобщая история":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                history.append(dict["data"]["items"][i]["estimate_value_name"])
+        if dict["data"]["items"][i]["subject_name"] == "Информатика":
+            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                IT.append(dict["data"]["items"][i]["estimate_value_name"])
         if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
             if dict["data"]["items"][i]["estimate_type_code"] in codeList:
                 PE.append(dict["data"]["items"][i]["estimate_value_name"])
@@ -120,8 +119,8 @@ def getNewMarks():
     print(newMarks)
     count=0
     newMarksDict={}
-    for i in marks:
-        newMarksDict[i]=marks[i]
+    for i in marks1:
+        newMarksDict[i]=marks1[i]
         count+=1
         if count==newMarks:
             break
@@ -147,14 +146,12 @@ def allAvg():
     for i in allMarks:
         if len(allMarks[i])!=0:
             allMarks[i]=round(mean(allMarks[i]), 2)
-        else:allMarks[i]="Оценок пока нет"
+        else:allMarks[i]="-"
     res_text=""
     for key in allMarks:
         res_text+=key
         res_text+=": "
-        for i in range(len(allMarks[key])):
-            res_text+=str(allMarks[key][i])
-            res_text+=", "
+        res_text+=str(allMarks[key])
         res_text+="\n"
     return res_text
 

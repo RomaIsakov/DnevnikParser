@@ -3,7 +3,6 @@ import datetime as dt
 import json
 from pathlib import Path
 import pickle
-import requests as requests
 import toml
 import sys
 
