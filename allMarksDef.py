@@ -3,6 +3,7 @@ import requests
 from statistics import mean
 from session_from_headers import headersMiner
 from dnevnik import *
+from beautifulMarks import beautifuMarksMaker
 def parsing():
     headersMiner()
     marksParser()
@@ -112,21 +113,18 @@ def jsonDumper(dict, fileName):
 def getNewMarks():
     with open("last_res.json", encoding="utf-8") as file:
         marks=json.load(file)
-    marksLen=len(marks)
+    marksLen=len(marks["data"]["items"])
+    print(marksLen)
     parsing()
     with open("last_res.json", encoding="utf-8") as file:
         marks1=json.load(file)
-    marksLen1=len(marks1)
+    marksLen1=len(marks1["data"]["items"])
     newMarks=marksLen1-marksLen
-    count=0
-    newMarksDict={}
-    for i in marks1:
-        newMarksDict[i]=marks1[i]
-        count+=1
-        if count==newMarks:
-            break
-    newMarksDict=allMarksDef(newMarksDict, 1)
-    return newMarksDict
+    newMarksDict=[]
+    print(newMarks)
+    for i in range(newMarks):
+        newMarksDict.appned(marks1["data"]["items"])
+    return beautifuMarksMaker(newMarksDict)
 
 def markParser():
     pass
@@ -155,6 +153,5 @@ def allAvg():
         res_text+=str(allMarks[key])
         res_text+="\n"
     return res_text
-
 if __name__ == "__main__":
     allAvg()
