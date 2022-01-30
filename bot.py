@@ -8,7 +8,6 @@ dp=Dispatcher(bot)
 with open("last_res.json", "r", encoding="utf-8") as file:
     dict=json.load(file)
 count = 0
-
 @dp.message_handler(commands="start")
 async def start(message:types.message):
     buttonsNames=["Все оценки", "Средний балл", "Новые оценки"]

@@ -132,6 +132,7 @@ def markParser():
     pass
 #Средний бал по всем предметам
 def allAvg():
+    parsing()
     avgDict={}
     with open("last_res.json", "r", encoding="utf-8") as file:
         dict = json.load(file)
