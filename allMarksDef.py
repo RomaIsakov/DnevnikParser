@@ -8,7 +8,6 @@ def parsing():
     headersMiner()
     marksParser()
 def allMarksDef(dict, key):
-    parsing()
     chemistry=[]
     rus=[]
     algebra=[]
@@ -28,52 +27,55 @@ def allMarksDef(dict, key):
     b=0
     codeList=["1084", "1058", "1077", "1063", "1086", "11204", "1065", "1087", "1089", "11080", "1088", "1083", "1092"]
     for i in range(len(dict["data"]["items"])):
-        if dict["data"]["items"][i]["subject_name"] == "Обществознание":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                society.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "История России. Всеобщая история":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                history.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Информатика":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                IT.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                PE.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Технология":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                technology.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Основы безопасности жизнедеятельности":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                OBJ.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Химия":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                chemistry.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Иностранный язык (английский)":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                eng.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "География":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                geography.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Биология":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                biology.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Русский язык":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                rus.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Алгебра":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                algebra.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Геометрия":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                geometry.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Литература":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                literature.append(dict["data"]["items"][i]["estimate_value_name"])
-        if dict["data"]["items"][i]["subject_name"] == "Физика":
-            if dict["data"]["items"][i]["estimate_type_code"] in codeList:
-                physics.append(dict["data"]["items"][i]["estimate_value_name"])
-
+        try:
+            int(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Обществознание":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    society.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "История России. Всеобщая история":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    history.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Информатика":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    IT.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Физическая культура":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    PE.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Технология":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    technology.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Основы безопасности жизнедеятельности":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    OBJ.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Химия":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    chemistry.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Иностранный язык (английский)":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    eng.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "География":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    geography.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Биология":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    biology.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Русский язык":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    rus.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Алгебра":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    algebra.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Геометрия":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    geometry.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Литература":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    literature.append(dict["data"]["items"][i]["estimate_value_name"])
+            if dict["data"]["items"][i]["subject_name"] == "Физика":
+                if dict["data"]["items"][i]["estimate_type_code"] in codeList:
+                    physics.append(dict["data"]["items"][i]["estimate_value_name"])
+        except:
+            pass
     mathDict={
             "Рус. Яз":rus,
             "Алгебра":algebra,
@@ -123,7 +125,7 @@ def getNewMarks():
     newMarksDict=[]
     print(newMarks)
     for i in range(newMarks):
-        newMarksDict.appned(marks1["data"]["items"])
+        newMarksDict.append(marks1["data"]["items"][i])
     return beautifuMarksMaker(newMarksDict)
 
 def markParser():
